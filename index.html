@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINTU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<style>
+    .buttons {
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        border-radius: 4px;
+    }
+
+    button:disabled {
+        background-color: #ddd;
+        cursor: not-allowed;
+    }
+</style>
+
+<body>
+
+
+
+    <button onclick="document.location='color.html' ">Color Assignment</button>
+    <button onclick="document.location='dropdown.html' ">DropDown Assignment</button>
+    <button onclick="document.location='MODEL.html' ">Model Assignment</button>
+
+
+    <div class="container">
+        <h1>ToDo App</h1>
+        <div class="input">
+            <input type="text" placeholder="Enter your task" id="inputfield">
+            <button onclick="Add()">Add</button>
+        </div>
+        <div class="text"></div>
+    </div>
+    <div class="img-left">
+        <img class="img2 " src="./color-scheme-left.svg" alt="" class="">
+
+    </div>
+    <div class="img-right">
+        <img src="./color-scheme-right.svg" alt="" class="">
+
+    </div>
+
+</body>
+<script>
+
+    let inputs = document.getElementById("inputfield")
+
+    let text = document.querySelector(".text")
+
+
+    function Add() {
+        if (inputs.value == "") {
+            alert("Plz enter the task")
+        }
+        else {
+            let newEle = document.createElement("ul")
+            newEle.innerHTML = `${inputs.value} <i class="fa fa-trash" aria-hidden="true"></i>`;
+            text.appendChild(newEle)
+            inputs.value = "";
+
+            newEle.querySelector("i").addEventListener("click", remove)
+            function remove() {
+                newEle.remove()
+            }
+        }
+    }
+
+
+</script>
+
+</html>

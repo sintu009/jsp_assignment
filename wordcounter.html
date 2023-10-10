@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word and Character Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .counters {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+        }
+
+        button {
+            font-size: 18px;
+            margin: 0 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 80%;
+            height: 150px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="textInput" placeholder="Type your text here..."></textarea>
+    <div class="counters">
+        Words: <span id="wordCount">0</span> | Characters: <span id="charCount">0</span>
+    </div>
+    <div class="buttons">
+        <button id="decrement">-</button>
+        <div class="counter">0</div>
+        <button id="increment">+</button>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('textInput');
+        const wordCount = document.getElementById('wordCount');
+        const charCount = document.getElementById('charCount');
+        const incrementButton = document.getElementById('increment');
+        const decrementButton = document.getElementById('decrement');
+        const counter = document.querySelector('.counter');
+
+        let count = 0;
+
+        incrementButton.addEventListener('click', () => {
+            count++;
+            updateCounter();
+        });
+
+        decrementButton.addEventListener('click', () => {
+            if (count > 0) {
+                count--;
+                updateCounter();
+            }
+        });
+
+        textInput.addEventListener('input', () => {
+            const words = textInput.value.trim().split(/\s+/);
+            wordCount.textContent = words.length;
+            charCount.textContent = textInput.value.length;
+        });
+
+        function updateCounter() {
+            counter.textContent = count;
+        }
+    </script>
+</body>
+
+</html>
