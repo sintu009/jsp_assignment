@@ -45,31 +45,39 @@
             color: white;
             border-radius: 5px;
             cursor: pointer;
+            margin-left: 10px;
         }
 
-        .form-group button:hover {
-            background-color: #45a049;
+        .form-group select,
+        .form-group input,
+        .delete-button {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
         }
 
-        .form-output {
-            margin-top: 20px;
+        .delete-button {
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-    <div class="form-container">
-        <div class="form-group">
-            <select id="inputType">
-                <option value="text">Text</option>
-                <option value="email">Email</option>
-                <option value="textarea">Textarea</option>
-                <option value="button">Button</option>
-            </select>
-            <button onclick="addField()">Add Field</button>
-        </div>
-        <div class="form-output" id="formOutput"></div>
+    <div class="form-group">
+        <select id="inputType">
+            <option value="text">Text</option>
+            <option value="email">Email</option>
+            <option value="textarea">Textarea</option>
+            <option value="button">Button</option>
+        </select>
+        <button onclick="addField()">Add Field</button>
     </div>
+    <div id="formOutput"></div>
 
     <script>
         function addField() {
@@ -78,7 +86,15 @@
             const newField = document.createElement(inputType === 'textarea' ? 'textarea' : 'input');
             newField.type = inputType;
             newField.placeholder = `Enter ${inputType}`;
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function () {
+                newField.remove();
+                deleteButton.remove();
+            };
             formOutput.appendChild(newField);
+            formOutput.appendChild(deleteButton);
         }
     </script>
 </body>
