@@ -5,38 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            position: relative;
+            transition: transform 0.3s ease;
+            /* Smooth transition for movement */
+        }
+
+        .arrow-buttons button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<style>
-    body {
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-    .container {
-        text-align: center;
-    }
-
-    .circle {
-        width: 100px;
-        height: 100px;
-        background-color: lightblue;
-        border-radius: 50%;
-        margin-bottom: 20px;
-        position: relative;
-        transition: transform 0.3s ease;
-        /* Smooth transition for movement */
-    }
-
-    .arrow-buttons button {
-        font-size: 16px;
-        padding: 10px 20px;
-        margin: 5px;
-        cursor: pointer;
-    }
-</style>
 
 <body>
     <div class="container">
@@ -49,53 +49,64 @@
         </div>
     </div>
 
+    <script>
+        const circle = document.querySelector('.circle');
+        const moveDistance = 5; // Adjust the movement distance as needed
+        let intervalId;
 
+        function moveUp() {
+            circle.style.top = `${parseInt(circle.style.top || 0) - moveDistance}px`;
+        }
 
+        function moveDown() {
+            circle.style.top = `${parseInt(circle.style.top || 0) + moveDistance}px`;
+        }
 
+        function moveLeft() {
+            circle.style.left = `${parseInt(circle.style.left || 0) - moveDistance}px`;
+        }
+
+        function moveRight() {
+            circle.style.left = `${parseInt(circle.style.left || 0) + moveDistance}px`;
+        }
+
+        function startMoving(event) {
+            event.preventDefault();
+            intervalId = setInterval(() => {
+                switch (event.target.className) {
+                    case 'up':
+                        moveUp();
+                        break;
+                    case 'down':
+                        moveDown();
+                        break;
+                    case 'left':
+                        moveLeft();
+                        break;
+                    case 'right':
+                        moveRight();
+                        break;
+                }
+            }, 10);
+        }
+
+        function stopMoving() {
+            clearInterval(intervalId);
+        }
+
+        document.querySelector('.up').addEventListener('mousedown', startMoving);
+        document.querySelector('.down').addEventListener('mousedown', startMoving);
+        document.querySelector('.left').addEventListener('mousedown', startMoving);
+        document.querySelector('.right').addEventListener('mousedown', startMoving);
+
+        document.querySelector('.up').addEventListener('touchstart', startMoving);
+        document.querySelector('.down').addEventListener('touchstart', startMoving);
+        document.querySelector('.left').addEventListener('touchstart', startMoving);
+        document.querySelector('.right').addEventListener('touchstart', startMoving);
+
+        document.addEventListener('mouseup', stopMoving);
+        document.addEventListener('touchend', stopMoving);
+    </script>
 </body>
-<script>
-    const circle = document.querySelector('.circle');
-    const moveDistance = 5; // Adjust the movement distance as needed
-    let intervalId;
-
-    function moveUp() {
-        circle.style.top = `${parseInt(circle.style.top || 0) - moveDistance}px`;
-    }
-
-    function moveDown() {
-        circle.style.top = `${parseInt(circle.style.top || 0) + moveDistance}px`;
-    }
-
-    function moveLeft() {
-        circle.style.left = `${parseInt(circle.style.left || 0) - moveDistance}px`;
-    }
-
-    function moveRight() {
-        circle.style.left = `${parseInt(circle.style.left || 0) + moveDistance}px`;
-    }
-
-    document.querySelector('.up').addEventListener('mousedown', () => {
-        intervalId = setInterval(moveUp, 10);
-    });
-
-    document.querySelector('.down').addEventListener('mousedown', () => {
-        intervalId = setInterval(moveDown, 10);
-    });
-
-    document.querySelector('.left').addEventListener('mousedown', () => {
-        intervalId = setInterval(moveLeft, 10);
-    });
-
-    document.querySelector('.right').addEventListener('mousedown', () => {
-        intervalId = setInterval(moveRight, 10);
-    });
-
-    // Stop moving when the button is released
-    document.addEventListener('mouseup', () => {
-        clearInterval(intervalId);
-    });
-
-
-</script>
 
 </html>
