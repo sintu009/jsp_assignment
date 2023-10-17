@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count</title>
+    <style>
+        .box {
+            margin: 5rem;
+        }
+
+        .input {
+            width: 10%;
+            padding: 20px;
+        }
+
+        button {
+            font-size: 20px;
+            font-weight: bolder;
+            width: 10%;
+            padding: 5px;
+            margin: 20px;
+        }
+
+        #result {
+            font-size: 70px;
+            text-align: center;
+        }
+
+        body {
+            background-color: azure;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="cont">
+        <div class="box">
+            <button onclick="add()">+</button>
+            <!-- <input class="input" type="number" id="box-1" value="0"> -->
+            <button onclick="sub()">-</button>
+        </div>
+        <div class="box">
+            <button onclick="add()">+</button>
+            <!-- <input class="input" type="number" id="box-2" value="0"> -->
+            <button onclick="sub()">-</button>
+        </div>
+        <div class="box">
+            <button onclick="add()">+</button>
+            <!-- <input class="input" type="number" id="box-3" value="0"> -->
+            <button onclick="sub()">-</button>
+        </div>
+    </div>
+    <div id="result">
+        Result : <span id='resul'>0</span>
+    </div>
+    <script>
+        let container = document.getElementById('cont')
+        let res = document.getElementById('resul')
+        let c = 0;
+        function add() {
+            ++c;
+            console.log(c);
+            res.textContent = c;
+        }
+        function sub() {
+            --c;
+            console.log(c);
+            res.textContent = c;
+        }
+
+    </script>
+</body>
+
+</html>

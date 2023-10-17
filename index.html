@@ -33,53 +33,23 @@
 <body>
 
 
-
+    <button onclick="document.location='todlist/index.html' ">To DoList</button>
     <button onclick="document.location='color.html' ">Color Assignment</button>
     <button onclick="document.location='dropdown.html' ">DropDown Assignment</button>
     <button onclick="document.location='MODEL.html' ">Model Assignment</button>
+    <button onclick="document.location='filter/filter.html' ">Filter</button>
+    <button onclick="document.location='wordcounter.html' ">Word Count</button>
+    <button onclick="document.location='arrow/arrow.html' ">Arrow</button>
 
 
-    <div class="container">
-        <h1>ToDo App</h1>
-        <div class="input">
-            <input type="text" placeholder="Enter your task" id="inputfield">
-            <button onclick="Add()">Add</button>
-        </div>
-        <div class="text"></div>
-    </div>
-    <div class="img-left">
-        <img class="img2 " src="./color-scheme-left.svg" alt="" class="">
 
-    </div>
-    <div class="img-right">
-        <img src="./color-scheme-right.svg" alt="" class="">
 
-    </div>
+
+
 
 </body>
 <script>
 
-    let inputs = document.getElementById("inputfield")
-
-    let text = document.querySelector(".text")
-
-
-    function Add() {
-        if (inputs.value == "") {
-            alert("Plz enter the task")
-        }
-        else {
-            let newEle = document.createElement("ul")
-            newEle.innerHTML = `${inputs.value} <i class="fa fa-trash" aria-hidden="true"></i>`;
-            text.appendChild(newEle)
-            inputs.value = "";
-
-            newEle.querySelector("i").addEventListener("click", remove)
-            function remove() {
-                newEle.remove()
-            }
-        }
-    }
 
 
 </script>

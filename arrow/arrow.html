@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .circle {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        position: relative;
+        transition: transform 0.3s ease;
+        /* Smooth transition for movement */
+    }
+
+    .arrow-buttons button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="circle"></div>
+        <div class="arrow-buttons">
+            <button class="up">UP</button>
+            <button class="down">DOWN</button>
+            <button class="left">LEFT</button>
+            <button class="right">RIGHT</button>
+        </div>
+    </div>
+
+
+
+
+</body>
+<script>
+    const circle = document.querySelector('.circle');
+    const moveDistance = 5; // Adjust the movement distance as needed
+    let intervalId;
+
+    function moveUp() {
+        circle.style.top = `${parseInt(circle.style.top || 0) - moveDistance}px`;
+    }
+
+    function moveDown() {
+        circle.style.top = `${parseInt(circle.style.top || 0) + moveDistance}px`;
+    }
+
+    function moveLeft() {
+        circle.style.left = `${parseInt(circle.style.left || 0) - moveDistance}px`;
+    }
+
+    function moveRight() {
+        circle.style.left = `${parseInt(circle.style.left || 0) + moveDistance}px`;
+    }
+
+    document.querySelector('.up').addEventListener('mousedown', () => {
+        intervalId = setInterval(moveUp, 10);
+    });
+
+    document.querySelector('.down').addEventListener('mousedown', () => {
+        intervalId = setInterval(moveDown, 10);
+    });
+
+    document.querySelector('.left').addEventListener('mousedown', () => {
+        intervalId = setInterval(moveLeft, 10);
+    });
+
+    document.querySelector('.right').addEventListener('mousedown', () => {
+        intervalId = setInterval(moveRight, 10);
+    });
+
+    // Stop moving when the button is released
+    document.addEventListener('mouseup', () => {
+        clearInterval(intervalId);
+    });
+
+
+</script>
+
+</html>
