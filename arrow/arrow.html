@@ -70,42 +70,26 @@
             circle.style.left = `${parseInt(circle.style.left || 0) + moveDistance}px`;
         }
 
-        function startMoving(event) {
-            event.preventDefault();
-            intervalId = setInterval(() => {
-                switch (event.target.className) {
-                    case 'up':
-                        moveUp();
-                        break;
-                    case 'down':
-                        moveDown();
-                        break;
-                    case 'left':
-                        moveLeft();
-                        break;
-                    case 'right':
-                        moveRight();
-                        break;
-                }
-            }, 10);
-        }
+        document.querySelector('.up').addEventListener('touchstart', () => {
+            intervalId = setInterval(moveUp, 10);
+        });
 
-        function stopMoving() {
+        document.querySelector('.down').addEventListener('touchstart', () => {
+            intervalId = setInterval(moveDown, 10);
+        });
+
+        document.querySelector('.left').addEventListener('touchstart', () => {
+            intervalId = setInterval(moveLeft, 10);
+        });
+
+        document.querySelector('.right').addEventListener('touchstart', () => {
+            intervalId = setInterval(moveRight, 10);
+        });
+
+        // Stop moving when the button is released
+        document.addEventListener('touchend', () => {
             clearInterval(intervalId);
-        }
-
-        document.querySelector('.up').addEventListener('mousedown', startMoving);
-        document.querySelector('.down').addEventListener('mousedown', startMoving);
-        document.querySelector('.left').addEventListener('mousedown', startMoving);
-        document.querySelector('.right').addEventListener('mousedown', startMoving);
-
-        document.querySelector('.up').addEventListener('touchstart', startMoving);
-        document.querySelector('.down').addEventListener('touchstart', startMoving);
-        document.querySelector('.left').addEventListener('touchstart', startMoving);
-        document.querySelector('.right').addEventListener('touchstart', startMoving);
-
-        document.addEventListener('mouseup', stopMoving);
-        document.addEventListener('touchend', stopMoving);
+        });
     </script>
 </body>
 

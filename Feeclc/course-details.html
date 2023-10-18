@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        .table th,
+        .table td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Course Details</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td id="name"></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td id="gender"></td>
+                </tr>
+                <tr>
+                    <td>Course</td>
+                    <td id="course"></td>
+                </tr>
+                <tr>
+                    <td>Paid Fee</td>
+                    <td id="paidFee"></td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td id="category"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to extract URL parameters
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Get parameters from the URL
+        const name = getParameterByName('name');
+        const gender = getParameterByName('gender');
+        const course = getParameterByName('course');
+        const paidFee = getParameterByName('paidFee');
+        const category = getParameterByName('category');
+
+        // Populate table with data
+        document.getElementById('name').textContent = name;
+        document.getElementById('gender').textContent = gender;
+        document.getElementById('course').textContent = course;
+        document.getElementById('paidFee').textContent = `$${paidFee}`;
+        document.getElementById('category').textContent = category;
+    </script>
+</body>
+
+</html>

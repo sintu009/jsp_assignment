@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Calculator</title>
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .calculator-container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .calculator-container button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container calculator-container">
+        <h1>Fee Calculator</h1>
+        <form id="feeCalculator">
+            <div class="form-group">
+                <label for="name">Enter your name:</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Select your gender:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="F" required>
+                    <label class="form-check-label" for="female">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="M">
+                    <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="other" value="O">
+                    <label class="form-check-label" for="other">Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Select course:</label>
+                <select class="form-control" id="course" required>
+                    <option value="">Select Course</option>
+                    <option value="MERN">MERN - $35,000</option>
+                    <option value="JAVA">JAVA - $30,000</option>
+                    <option value="PYTHON">PYTHON - $25,000</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="paidFee">Paid fee: $</label>
+                <input type="number" class="form-control" id="paidFee" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Select category:</label>
+                <select class="form-control" id="category" required>
+                    <option value="">Select Category</option>
+                    <option value="General">General (0%)</option>
+                    <option value="OBC">OBC (10%)</option>
+                    <option value="SC/ST">SC/ST (15%)</option>
+                    <option value="Other">Other (20%)</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="calculateFee()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function calculateFee() {
+            const name = document.getElementById("name").value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const course = document.getElementById("course").value;
+            const paidFee = parseFloat(document.getElementById("paidFee").value);
+            const category = document.getElementById("category").value;
+
+            const params = new URLSearchParams({
+                name: name,
+                gender: gender,
+                course: course,
+                paidFee: paidFee,
+                category: category
+            });
+
+            const redirectURL = `course-details.html?${params.toString()}`;
+            window.location.href = redirectURL; // Redirect to the new page
+        }
+    </script>
+</body>
+
+</html>
